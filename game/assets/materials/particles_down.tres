@@ -1,0 +1,13 @@
+[gd_resource type="ParticlesMaterial" load_steps=3 format=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.282955 ), -0.773427, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[resource]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 0, 1 )
+scale_curve = SubResource( 2 )
+color = Color( 0.690196, 0, 0, 1 )
