@@ -31,7 +31,7 @@ onready var block_scenes = [
 	preload("res://scenes/blocks/block_low_obstacle.tscn"),
 	preload("res://scenes/blocks/block_gap.tscn"),
 	preload("res://scenes/blocks/block_powerup.tscn"),
-	preload("res://scenes/blocks/block_template.tscn")
+	preload("res://scenes/blocks/block_terminal.tscn")
 ]
 
 onready var player := get_node("/root/game_world/player")
@@ -39,6 +39,7 @@ onready var world := get_node("/root/game_world")
 
 # State variables
 var alive := true
+var scroll_speed_mult := 1.0
 var last_block_pos := Vector3(0, 0, 0)
 var last_block_type := 0
 
@@ -48,7 +49,7 @@ func _ready():
 	last_block_pos = get_children()[-1].translation
 
 func _process(_delta):
-	global_translate(Vector3(-SCROLL_SPEED, 0.0, 0.0))
+	global_translate(Vector3(-SCROLL_SPEED, 0.0, 0.0) * scroll_speed_mult)
 
 # Add a new block to the world on the far right
 func gen_block():
@@ -69,6 +70,8 @@ func gen_block():
 			new_block.connect("player_collided", player, "lose_life")
 		BLOCK_TYPES.BLOCK_POWERUP:
 			new_block.connect("powerup_gained", world, "activate_powerup")
+		BLOCK_TYPES.BLOCK_MINIGAME:
+			new_block.connect("minigame_triggered", world, "show_minigame")
 
 # Remove blocks that have passed the left edge of the screen
 func clean_blocks():
