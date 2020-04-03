@@ -43,7 +43,6 @@ current = true
 transform = Transform( -6.51683e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -6.51683e-08, 0, 3, 0 )
 
 [node name="gui" parent="." instance=ExtResource( 4 )]
-transform = Transform( 3, 0, 0, 0, 1.5, 0, 0, 0, 1, -5.93, 5.45, 3.82 )
 
 [node name="blocks" type="Spatial" parent="."]
 script = ExtResource( 1 )

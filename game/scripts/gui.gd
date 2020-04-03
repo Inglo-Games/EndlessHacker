@@ -1,10 +1,7 @@
-extends Spatial
+extends Control
 
-onready var lives_label = $Viewport/Control/HBoxContainer/lives_label
-onready var score_label = $Viewport/Control/HBoxContainer/score_label
-
-func _ready():
-	pass
+onready var lives_label = $hbox/lives_label
+onready var score_label = $hbox/score_label
 
 func _on_update_lives(new_num : int):
 	lives_label.text = "Logins: %d" % new_num
