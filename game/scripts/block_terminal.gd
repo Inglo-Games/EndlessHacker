@@ -19,7 +19,7 @@ func _ready():
 func _on_body_entered(body):
 	if body is Player:
 		print("Minigame triggered")
-		emit_signal("minigame_triggered")
+		emit_signal("minigame_triggered", global_transform)
 
 func _on_mouse_entered():
 	is_mouse_inside = true
