@@ -1,36 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/block_container.gd" type="Script" id=1]
 [ext_resource path="res://scripts/game_world.gd" type="Script" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/gui.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/materials/runner_env.tres" type="Environment" id=5]
 
 [sub_resource type="CubeMesh" id=1]
 
 [sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
-
-[sub_resource type="ProceduralSky" id=3]
-sky_top_color = Color( 0, 0.458824, 0.0196078, 1 )
-sky_horizon_color = Color( 0, 0, 0, 1 )
-sky_curve = 0.413531
-sky_energy = 2.9
-ground_bottom_color = Color( 0, 0, 0, 1 )
-ground_horizon_color = Color( 0, 0, 0, 1 )
-sun_latitude = 134.8
-
-[sub_resource type="Environment" id=4]
-background_mode = 2
-background_sky = SubResource( 3 )
-ambient_light_color = Color( 0.290196, 1, 0, 1 )
-ambient_light_energy = 1.3
-dof_blur_far_enabled = true
-dof_blur_far_distance = 14.65
-dof_blur_far_transition = 20.27
-dof_blur_far_amount = 0.07
-dof_blur_far_quality = 0
-glow_enabled = true
-glow_intensity = 0.0
 
 [node name="game_world" type="Spatial"]
 script = ExtResource( 2 )
@@ -78,7 +57,7 @@ material/0 = null
 shape = SubResource( 2 )
 
 [node name="env" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
+environment = ExtResource( 5 )
 
 [node name="tween" type="Tween" parent="."]
 

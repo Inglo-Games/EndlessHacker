@@ -74,4 +74,4 @@ slide={
 
 quality/driver/fallback_to_gles2=true
 threads/thread_model=2
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://assets/materials/runner_env.tres"
