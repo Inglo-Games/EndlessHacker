@@ -47,9 +47,9 @@ func activate_powerup(powerup_type : int):
 			$powerup_timer.start(3.0)
 
 # Stop the runner portion of the game and move the camera to show the minigame
-func show_minigame(position : Transform):
+func show_minigame(block : Block):
 	slow_game(0.0, 0.35)
-	var new_cam_pos := position.translated(CAM_MINIGAME_OFFSET)
+	var new_cam_pos = block.global_transform.translated(CAM_MINIGAME_OFFSET)
 	tween.interpolate_property($camera, "global_transform", CAM_RUNNER_POS, 
 				new_cam_pos, 0.35, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -64,6 +64,7 @@ func end_minigame():
 
 # Slow movement of blocks and player to target percentage
 func slow_game(target:float, speed:float):
+	
 	if(target == 0):
 		$blocks.scroll_speed_mult = target
 	else:
@@ -98,6 +99,10 @@ func _on_timer_timeout():
 func _on_minigame_won():
 	score += MINIGAME_WIN_BONUS
 	end_minigame()
+
+func _on_minigame_skipped():
+	autowins -= 1
+	_on_minigame_won()
 
 func _on_minigame_lost():
 	$player.lose_life()

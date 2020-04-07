@@ -8,7 +8,7 @@ const INIT_POSITION := Vector3(0, 3, 0)
 const JUMP_VELOCITY := 20.5
 const Y_THRESHOLD := -5.0
 
-onready var anim := $AnimationPlayer
+onready var anim := $anim
 
 var velocity := Vector3()
 var lives_remaining := 3

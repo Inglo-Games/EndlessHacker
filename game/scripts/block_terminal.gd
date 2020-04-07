@@ -13,13 +13,13 @@ var last_mouse_pos3D = null
 var last_mouse_pos2D = null
 
 func _ready():
-	$terminal_block/screen_quad/area.connect("mouse_entered", self, "_on_mouse_entered")
+	screen_area.connect("mouse_entered", self, "_on_mouse_entered")
 	$player_collide_area.connect("body_entered", self, "_on_body_entered")
 
 func _on_body_entered(body):
 	if body is Player:
-		print("Minigame triggered")
-		emit_signal("minigame_triggered", global_transform)
+		emit_signal("minigame_triggered", self)
+		$terminal_block/Viewport/minigame_frame/vbox/skip_btn.disabled = (get_node("/root/game_world").autowins == 0)
 
 func _on_mouse_entered():
 	is_mouse_inside = true

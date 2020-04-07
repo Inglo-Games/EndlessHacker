@@ -71,10 +71,10 @@ func gen_block():
 		BLOCK_TYPES.BLOCK_POWERUP:
 			new_block.connect("powerup_gained", world, "activate_powerup")
 		BLOCK_TYPES.BLOCK_MINIGAME:
-			print("Minigame type is %s" % new_block.get_node("terminal_block/Viewport/minigame_frame").get_class())
 			new_block.connect("minigame_triggered", world, "show_minigame")
 			new_block.get_node("terminal_block/Viewport/minigame_frame").connect("game_won", world, "_on_minigame_won")
 			new_block.get_node("terminal_block/Viewport/minigame_frame").connect("game_lost", world, "_on_minigame_lost")
+			new_block.get_node("terminal_block/Viewport/minigame_frame").connect("cassette_used", world, "_on_minigame_skipped")
 
 # Remove blocks that have passed the left edge of the screen
 func clean_blocks():

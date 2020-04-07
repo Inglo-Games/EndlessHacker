@@ -59,6 +59,7 @@ text = "Lose Game"
 margin_top = 244.0
 margin_right = 416.0
 margin_bottom = 272.0
+disabled = true
 text = "Use Cassette"
 
 [node name="crt_effect" type="ColorRect" parent="."]
