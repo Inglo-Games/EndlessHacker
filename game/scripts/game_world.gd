@@ -13,6 +13,9 @@ var score_mult := 1.0
 var autowins := 0
 
 func _ready():
+	
+	seed(123456)
+	
 	$player.connect("lives_updated", $gui, "_on_update_lives")
 	connect("score_updated", $gui, "_on_update_score")
 	
@@ -39,13 +42,13 @@ func activate_powerup(powerup_type : int):
 			autowins += 1
 		
 		PowerupBlock.POWER_TYPE.PHONE:
-			slow_game(0.5, 0.5, 0.33)
+			slow_game(0.5, 0.33)
 			$powerup_timer.connect("timeout", self, "resume_speed", [0.33])
-			$powerup_timer.start(6.0)
+			$powerup_timer.start(3.0)
 
 # Stop the runner portion of the game and move the camera to show the minigame
 func show_minigame(position : Transform):
-	slow_game(0.0, 0.0, 0.35)
+	slow_game(0.0, 0.35)
 	var new_cam_pos := position.translated(CAM_MINIGAME_OFFSET)
 	tween.interpolate_property($camera, "global_transform", CAM_RUNNER_POS, 
 				new_cam_pos, 0.35, Tween.TRANS_CUBIC, Tween.EASE_OUT)
@@ -60,16 +63,18 @@ func end_minigame():
 				CAM_RUNNER_POS, 0.35, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 
 # Slow movement of blocks and player to target percentage
-func slow_game(run_target:float, blocks_target:float, speed:float):
-	if(blocks_target == 0):
-		$blocks.scroll_speed_mult = blocks_target
+func slow_game(target:float, speed:float):
+	if(target == 0):
+		$blocks.scroll_speed_mult = target
 	else:
-		tween.interpolate_property($blocks, "scroll_speed_mult", 1.0, blocks_target, 
+		tween.interpolate_property($blocks, "scroll_speed_mult", 1.0, target, 
+				speed, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		tween.interpolate_property(Engine, "time_scale", 1.0, target, 
 				speed, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	
-	tween.interpolate_property($player, "anim:playback_speed", 1.0, run_target,
+	tween.interpolate_property($player, "anim:playback_speed", 1.0, target,
 				speed, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	tween.interpolate_property(self, "score_mult", score_mult, run_target,
+	tween.interpolate_property(self, "score_mult", score_mult, target,
 				speed, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
 
@@ -81,6 +86,8 @@ func resume_speed(speed:float):
 				speed, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	tween.interpolate_property(self, "score_mult", score_mult, 1.0,
 				speed, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	tween.interpolate_property(Engine, "time_scale", Engine.time_scale, 1.0,
+			speed, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
 
 # Generate a new block and removed passed blocks after a set time
