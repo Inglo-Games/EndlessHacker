@@ -7,10 +7,10 @@ const BLOCK_WIDTH := Vector3(6, 0, 0)
 # This defines probabilities for each block to transition to the next
 # E.g., the probability block A is followed by block B is TRANS_PROBS[A][B]
 const TRANS_PROBS := [
-	[0.0,  0.3,  0.3, 0.25, 0.05, 0.1],
+	[0.0,  0.3,  0.3, 0.25, 0.07, 0.08],
 	[0.3,  0.2,  0.3, 0.2,  0,    0],
-	[0.3,  0.5,  0.1, 0,    0,    0.1],
-	[0.75, 0.15, 0,   0.05, 0.05, 0],
+	[0.3,  0.5,  0.1, 0,    0.05, 0.05],
+	[0.73, 0.15, 0,   0.05, 0.07, 0],
 	[0.6,  0.1,  0.1, 0.2,  0,    0],
 	[1.0,  0,    0,   0,    0,    0]
 ]
