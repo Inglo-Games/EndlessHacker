@@ -15,6 +15,8 @@ var autowins := 0
 func _ready():
 	$player.connect("lives_updated", $gui, "_on_update_lives")
 	connect("score_updated", $gui, "_on_update_score")
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _process(delta):
 	score += delta * score_mult
@@ -47,9 +49,11 @@ func show_minigame(position : Transform):
 	var new_cam_pos := position.translated(CAM_MINIGAME_OFFSET)
 	tween.interpolate_property($camera, "global_transform", CAM_RUNNER_POS, 
 				new_cam_pos, 0.35, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # Reset camera to original position and resume game
 func end_minigame():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	resume_speed(0.35)
 	var cam_current_pos = $camera.global_transform
 	tween.interpolate_property($camera, "global_transform", cam_current_pos, 
