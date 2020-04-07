@@ -39,13 +39,13 @@ func activate_powerup(powerup_type : int):
 			autowins += 1
 		
 		PowerupBlock.POWER_TYPE.PHONE:
-			slow_game(0.5, 0.33)
+			slow_game(0.5, 0.5, 0.33)
 			$powerup_timer.connect("timeout", self, "resume_speed", [0.33])
-			$powerup_timer.start(8.0)
+			$powerup_timer.start(6.0)
 
 # Stop the runner portion of the game and move the camera to show the minigame
 func show_minigame(position : Transform):
-	slow_game(0.0, 0.35)
+	slow_game(0.0, 0.0, 0.35)
 	var new_cam_pos := position.translated(CAM_MINIGAME_OFFSET)
 	tween.interpolate_property($camera, "global_transform", CAM_RUNNER_POS, 
 				new_cam_pos, 0.35, Tween.TRANS_CUBIC, Tween.EASE_OUT)
@@ -60,11 +60,16 @@ func end_minigame():
 				CAM_RUNNER_POS, 0.35, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 
 # Slow movement of blocks and player to target percentage
-func slow_game(target:float, speed:float):
-	$blocks.scroll_speed_mult = 0.0
-	tween.interpolate_property($player, "anim:playback_speed", 1.0, target,
+func slow_game(run_target:float, blocks_target:float, speed:float):
+	if(blocks_target == 0):
+		$blocks.scroll_speed_mult = blocks_target
+	else:
+		tween.interpolate_property($blocks, "scroll_speed_mult", 1.0, blocks_target, 
 				speed, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	tween.interpolate_property(self, "score_mult", score_mult, target,
+	
+	tween.interpolate_property($player, "anim:playback_speed", 1.0, run_target,
+				speed, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.interpolate_property(self, "score_mult", score_mult, run_target,
 				speed, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
 
