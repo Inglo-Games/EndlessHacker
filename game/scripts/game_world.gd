@@ -14,9 +14,8 @@ var autowins := 0
 
 func _ready():
 	
-	seed(123456)
-	
 	$player.connect("lives_updated", $gui, "_on_update_lives")
+	$powerup_timer.connect("timeout", self, "resume_speed", [0.33])
 	connect("score_updated", $gui, "_on_update_score")
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -43,7 +42,6 @@ func activate_powerup(powerup_type : int):
 		
 		PowerupBlock.POWER_TYPE.PHONE:
 			slow_game(0.5, 0.33)
-			$powerup_timer.connect("timeout", self, "resume_speed", [0.33])
 			$powerup_timer.start(3.0)
 
 # Stop the runner portion of the game and move the camera to show the minigame

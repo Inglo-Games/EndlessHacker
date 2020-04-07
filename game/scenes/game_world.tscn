@@ -67,4 +67,7 @@ wait_time = 0.33
 autostart = true
 
 [node name="powerup_timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 3.0
+one_shot = true
 [connection signal="timeout" from="block_timer" to="." method="_on_timer_timeout"]
