@@ -34,8 +34,8 @@ onready var block_scenes = [
 	preload("res://scenes/blocks/block_terminal.tscn")
 ]
 
-onready var player := get_node("/root/game_world/player")
-onready var world := get_node("/root/game_world")
+var player
+var world
 
 # State variables
 var alive := true
@@ -50,6 +50,11 @@ func _ready():
 
 func _process(_delta):
 	global_translate(Vector3(-SCROLL_SPEED, 0.0, 0.0) * scroll_speed_mult)
+
+# Get references to the Player object and game node to connect signals to later
+func connect_player_and_world(player_param, world_param):
+	player = player_param
+	world = world_param
 
 # Add a new block to the world on the far right
 func gen_block():
