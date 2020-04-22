@@ -19,7 +19,6 @@ func _ready():
 func _on_body_entered(body):
 	if body is Player:
 		emit_signal("minigame_triggered", self)
-		$terminal_block/Viewport/minigame_frame/vbox/skip_btn.disabled = (get_node("/root/game_world").autowins == 0)
 
 func _on_mouse_entered():
 	is_mouse_inside = true

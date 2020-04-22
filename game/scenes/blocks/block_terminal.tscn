@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/blocks/block_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/meshes/terminal_block.glb" type="PackedScene" id=2]
 [ext_resource path="res://scripts/block_terminal.gd" type="Script" id=3]
-[ext_resource path="res://scenes/minigames/minigame_placeholder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/minigames/minigame_template.tscn" type="PackedScene" id=5]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -35,10 +35,9 @@ usage = 0
 render_target_v_flip = true
 render_target_update_mode = 3
 
-[node name="minigame_frame" parent="terminal_block/Viewport" index="0" instance=ExtResource( 4 )]
+[node name="minigame_frame" parent="terminal_block/Viewport" index="0" instance=ExtResource( 5 )]
 margin_right = 0.0
 margin_bottom = 0.0
-mouse_default_cursor_shape = 2
 
 [node name="screen_quad" type="MeshInstance" parent="terminal_block" index="2"]
 transform = Transform( 1.492, 0, 0, 0, 1.122, 0, 0, 0, 1, 0, 1.89803, -0.920709 )
