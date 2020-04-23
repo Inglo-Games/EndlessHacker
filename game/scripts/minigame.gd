@@ -20,6 +20,7 @@ func _on_minigame_lost():
 
 func _on_minigame_executed():
 	$instructions.visible = false
+	$minigame/vbox/win_btn.grab_focus()
 
 func _on_minigame_skipped():
 	emit_signal("cassette_used")

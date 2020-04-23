@@ -9,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1440.0
 margin_bottom = -720.0
-mouse_filter = 1
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -19,6 +18,7 @@ __meta__ = {
 [node name="minigame" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -52,17 +52,26 @@ align = 1
 margin_top = 158.0
 margin_right = 416.0
 margin_bottom = 177.0
+focus_neighbour_bottom = NodePath("../lose_btn")
+focus_next = NodePath("../lose_btn")
+focus_previous = NodePath("../lose_btn")
+mouse_default_cursor_shape = 2
 text = "Win Game"
 
 [node name="lose_btn" type="Button" parent="minigame/vbox"]
 margin_top = 195.0
 margin_right = 416.0
 margin_bottom = 214.0
+focus_neighbour_top = NodePath("../win_btn")
+focus_next = NodePath("../win_btn")
+focus_previous = NodePath("../win_btn")
+mouse_default_cursor_shape = 2
 text = "Lose Game"
 
 [node name="instructions" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -106,12 +115,20 @@ alignment = 1
 margin_left = 60.0
 margin_right = 195.0
 margin_bottom = 19.0
+focus_neighbour_right = NodePath("../skip_btn")
+focus_next = NodePath("../skip_btn")
+focus_previous = NodePath("../skip_btn")
+mouse_default_cursor_shape = 2
 text = "EXECUTE PROGRAM"
 
 [node name="skip_btn" type="Button" parent="instructions/vbox/hbox"]
 margin_left = 215.0
 margin_right = 323.0
 margin_bottom = 19.0
+focus_neighbour_left = NodePath("../run_btn")
+focus_next = NodePath("../run_btn")
+focus_previous = NodePath("../run_btn")
+mouse_default_cursor_shape = 2
 disabled = true
 text = "USE CASSETTE"
 
@@ -119,6 +136,7 @@ text = "USE CASSETTE"
 material = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false

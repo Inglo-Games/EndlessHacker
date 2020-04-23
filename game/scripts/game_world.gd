@@ -50,6 +50,7 @@ func activate_powerup(powerup_type : int):
 
 # Stop the runner portion of the game and move the camera to show the minigame
 func show_minigame(block : Block):
+	block.get_node("terminal_block/Viewport/minigame_frame/instructions/vbox/hbox/run_btn").grab_focus()
 	slow_game(0.0, 0.35)
 	var new_cam_pos = block.global_transform.translated(CAM_MINIGAME_OFFSET)
 	tween.interpolate_property(camera, "global_transform", CAM_RUNNER_POS, 
