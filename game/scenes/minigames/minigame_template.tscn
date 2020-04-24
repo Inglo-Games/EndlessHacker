@@ -28,46 +28,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="vbox" type="VBoxContainer" parent="minigame"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 12.0
-margin_right = -32.0
-margin_bottom = -12.0
-custom_constants/separation = 18
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="minigame/vbox"]
-margin_top = 121.0
-margin_right = 416.0
-margin_bottom = 140.0
-text = "Minigame Placeholder"
-align = 1
-
-[node name="win_btn" type="Button" parent="minigame/vbox"]
-margin_top = 158.0
-margin_right = 416.0
-margin_bottom = 177.0
-focus_neighbour_bottom = NodePath("../lose_btn")
-focus_next = NodePath("../lose_btn")
-focus_previous = NodePath("../lose_btn")
-mouse_default_cursor_shape = 2
-text = "Win Game"
-
-[node name="lose_btn" type="Button" parent="minigame/vbox"]
-margin_top = 195.0
-margin_right = 416.0
-margin_bottom = 214.0
-focus_neighbour_top = NodePath("../win_btn")
-focus_next = NodePath("../win_btn")
-focus_previous = NodePath("../win_btn")
-mouse_default_cursor_shape = 2
-text = "Lose Game"
-
 [node name="instructions" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
